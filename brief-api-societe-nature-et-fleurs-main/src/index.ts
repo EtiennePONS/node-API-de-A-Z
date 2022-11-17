@@ -1,8 +1,9 @@
 import cors from "cors";
 import express from "express";
-import planteRouter from "./routes/PlanteRoutes";
+import planteRouter from "./routes/PlanteRoute";
+import userRouter from "./routes/UserRoute";
 import AppDataSource from "./data-source";
-import path = require("path");
+import path from "path";
 
 /**-----------------Initialistion API express et connection BDD -------------------------*/
 AppDataSource.initialize().then(async () => {
@@ -19,8 +20,8 @@ AppDataSource.initialize().then(async () => {
 
   /**-----------------  Adresse+Renvoi ver le fichier PlanteRoute  -------------------------*/
   app.use("/api/plantes", planteRouter);
-  /**--------------------------------------------------------------------------------------*/
-
+  app.use("/api/users", userRouter);
+  /**------------------------IMAGES----------------------------------------------------------*/
   app.use("/assets", express.static(path.join(__dirname, "../public/assets")));
   /**-----------------Methode permettant d'identifier toutes les connexions -------------------------*/
   app.listen(8080, () => {

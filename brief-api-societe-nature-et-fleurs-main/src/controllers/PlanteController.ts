@@ -70,8 +70,8 @@ class PlanteController {
         message: `Nouvelle Plante crée!!!!`,
         data: newPlant,
       });
-    } catch (error) {
-      res.send({ status: "FAILED" });
+    } catch (error: any) {
+      res.send({ message: error?.message });
     }
   }
 
